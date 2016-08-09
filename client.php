@@ -26,23 +26,24 @@
 		$array = array('id'=>$id);
 	    
 	    $json = json_encode($array);
-	    return echo $json;
+	    return $json;
 
-	    close($conn);
+	    mysqli_close($conn);
 	}
 
 	function getAll(){
 		$conn = mysqli_connect("localhost","root","","api_test") or die("koneksi gagal");
 		$data = mysqli_query($conn,"select * from clients")
 			or die("Error: ".mysqli_error($conn));
+
 		$clients = array();
-		while ($client = mysqli_fetch_array($data) {
+		while ($client = mysqli_fetch_array($data)) {
 			$clients[] = $client;
 		}
 		$clients = json_encode($clients);
-		return $clients;
+		echo $clients;
 
-		close($conn);
+		mysqli_close($conn);
 	}
 	
 
